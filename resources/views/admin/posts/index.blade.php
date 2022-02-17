@@ -15,6 +15,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Titolo</th>
                                 <th scope="col">Slug</th>
+                                <th scope="col">Categoria</th>
                                 <th scope="col">Azioni</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
@@ -26,6 +27,13 @@
                                 <td>{{$post->id}}</td>
                                 <td>{{$post->title}}</td>
                                 <td>{{$post->slug}}</td>
+                                <td>
+                                    @if ($post->category)
+                                    {{$post->category->name}}                                        
+                                    @else
+                                    None
+                                    @endif                          
+                                </td>
                                 <td>
                                     <a href="{{route('posts.show', $post->id)}}"><button type="button" class="btn btn-primary">Visualizza</button></a>
                                 </td>

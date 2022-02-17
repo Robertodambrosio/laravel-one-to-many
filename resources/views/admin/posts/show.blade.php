@@ -14,6 +14,11 @@
                         <span class="badge badge-secondary">Bozza</span>
                     @endif
                     <p>{{$post->content}}</p>
+                    @if ($post->category)
+                        <div class="mb-3">
+                            Categoria: {{$post->category->name}}
+                        </div>
+                    @endif
                     <a href="{{route('posts.index', $post->id)}}"><button type="button" class="btn btn-primary">Torna ai post</button></a>
                 </div>
             </div>

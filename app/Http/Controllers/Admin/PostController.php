@@ -49,6 +49,7 @@ class PostController extends Controller
             'title'=> 'required|string|max:100',
             'content'=> 'required',
             'published'=> 'sometimes|accepted',
+            'category_id'=>'nullable|exists:categories,id'
         ]);
 
         $data = $request->all();
@@ -56,6 +57,7 @@ class PostController extends Controller
         $newPost = new Post();
         $newPost->title = $data['title'];
         $newPost->content= $data['content'];
+        $newPost->category_id = $data['category_id'];
 
         if (isset($data['published'])) {
             $newPost->published = true;
@@ -94,8 +96,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
+
+
     {
-        return view('admin.posts.edit', compact('post'));
+
+        $categories = Category::all();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -111,6 +118,7 @@ class PostController extends Controller
             'title' => 'required|string|max:100',
             'content' => 'required',
             'published' => 'sometimes|accepted',
+            'category_id' => 'nullable|exists:categories,id'
         ]);
 
         $data = $request->all();
@@ -130,6 +138,8 @@ class PostController extends Controller
        }
         $post->content = $data['content'];
         $post->published = isset($data['published']);
+        $post->category_id = $data['category_id'];
+
 
 
 
