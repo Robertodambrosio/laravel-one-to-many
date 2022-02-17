@@ -27,6 +27,18 @@
                             <div class="alert alert-danger mt-3">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="category_id">Categorie</label>
+                            <select class="custom-select" name="category_id" id="category" @error ('category_id') is-invalid @enderror>
+                                <option value="">Seleziona una categoria</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}" {{old("category_id") == $category-> id ? 'selected' : ''}}>{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                            <div class="alert alert-danger mt-3">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <div class="form-group form-check">
                             <input type="checkbox" class="form-check-input" id="published">
                             <label class="form-check-label" for="published">Pubblica</label>
@@ -40,3 +52,4 @@
 </div>
 
 @endsection
+
